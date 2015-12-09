@@ -17,8 +17,8 @@ export default React.createClass({
           <Home />
         </Provider>
 
-        {/**/
-          renderDevTools(store)
+        {/*
+          renderDevTools(store)*/
         }
       </div>
     );

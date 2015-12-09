@@ -5,12 +5,13 @@ import * as reducers from '../reducers/index';
 
 let createStoreWithMiddleware;
 
+
 // Configure the dev tools when in DEV mode
 if (__DEV__) {
   createStoreWithMiddleware = compose(
-    applyMiddleware(thunkMiddleware),
-    devTools(),
-    persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
+    applyMiddleware(thunkMiddleware)
+    //,devTools()
+    //,persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
   )(createStore);
 } else {
   createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);

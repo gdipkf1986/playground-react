@@ -24,13 +24,15 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     devFlagPlugin,
-    new ExtractTextPlugin('app.output.css')
+    new ExtractTextPlugin('app.output.css', {
+      allChunks: true
+    })
   ],
   module: {
     loaders: [
       {test: /\.js$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/},
       {test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader?module!cssnext-loader')},
-      {test: /\.scss$/, loader: ExtractTextPlugin.extract('css-loader!sass?sourceMap')}
+      {test: /\.scss$/, loader: ExtractTextPlugin.extract('css-loader?module!sass?sourceMap')}
     ]
   },
   resolve: {
