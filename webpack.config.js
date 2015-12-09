@@ -1,5 +1,7 @@
+/*global require*/
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var path = require('path');
 
 var devFlagPlugin = new webpack.DefinePlugin({
   __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
@@ -11,7 +13,7 @@ module.exports = {
     'webpack/hot/only-dev-server',
     './js/index.js'
   ],
-  devtool:'source-map',
+  devtool: 'source-map',
   output: {
     path: __dirname + '/static/',
     publicPath: '/static/',
@@ -22,15 +24,19 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     devFlagPlugin,
-    new ExtractTextPlugin('app.css')
+    new ExtractTextPlugin('app.output.css')
   ],
   module: {
     loaders: [
-      { test: /\.js$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader?module!cssnext-loader') }
+      {test: /\.js$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/},
+      {test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader?module!cssnext-loader')},
+      {test: /\.scss$/, loader: ExtractTextPlugin.extract('css-loader!sass?sourceMap')}
     ]
   },
   resolve: {
     extensions: ['', '.js', '.json']
+  },
+  sassLoader: {
+    includePaths: [path.resolve(__dirname, "./css")]
   }
 };

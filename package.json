@@ -7,30 +7,31 @@
     "build-dev": "webpack -p"
   },
   "dependencies": {
-    "0": "babel-core: ^5.0.0",
-    "1": "es6-promise: ^3.0.2",
-    "2": "whatwg-fetch: ^0.10.1",
-    "3": "lodash: ^3.10.1",
-    "4": "react: ^0.14.0",
-    "5": "react-dom: ^0.14.0",
-    "6": "redux: ^3.0.4",
-    "7": "react-redux: ^4.0.0",
-    "8": "redux-devtools: ^2.1.5",
-    "9": "redux-thunk: ^1.0.0",
+    "babel-core": "^5.0.0",
+    "es6-promise": "^3.0.2",
+    "whatwg-fetch": "^0.10.1",
+    "lodash": "^3.10.1",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "redux": "^3.0.4",
+    "react-redux": "^4.0.0",
+    "redux-devtools": "^2.1.5",
+    "redux-thunk": "^1.0.0",
     "history": "^1.14.0",
     "react-bootstrap": "^0.28.1",
     "react-lifecycle": "^1.0.0",
-    "react-router": "^1.0.1"
+    "redux-router": "^1.0.0-beta5"
   },
-  "devDependencies": [
-    "webpack: ^1.12.6",
-    "webpack-dev-server: ^1.12.1",
-    "css-loader: ^0.23.0",
-    "babel-core: ^5.0.0",
-    "babel-loader: ^5.0.0",
-    "react-hot-loader: ^1.3.0",
-    "style-loader: ^0.13.0",
-    "extract-text-webpack-plugin: ^0.9.1",
-    "cssnext-loader: ^1.0.1"
-  ]
+  "devDependencies": {
+    "babel-loader": "^5.0.0",
+    "css-loader": "^0.23.0",
+    "cssnext-loader": "^1.0.1",
+    "extract-text-webpack-plugin": "^0.9.1",
+    "node-sass": "^3.4.2",
+    "react-hot-loader": "^1.3.0",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.6",
+    "webpack-dev-server": "^1.12.1"
+  }
 }
