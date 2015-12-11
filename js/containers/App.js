@@ -4,15 +4,16 @@ import { pushState } from 'redux-router'
 import Explore from '../components/Explore'
 import { resetErrorMessage } from '../actions'
 
-class App extends Component {
+import BaseComponent from '../mixins/BaseComponent';
+
+
+class App extends BaseComponent {
   constructor(props) {
-    super(props)
-    this.handleChange = this.handleChange.bind(this)
-    this.handleDismissClick = this.handleDismissClick.bind(this)
+    super(props);
   }
 
   handleDismissClick(e) {
-    this.props.resetErrorMessage()
+    this.props.resetErrorMessage();
     e.preventDefault()
   }
 
@@ -21,7 +22,7 @@ class App extends Component {
   }
 
   renderErrorMessage() {
-    const { errorMessage } = this.props
+    const { errorMessage } = this.props;
     if (!errorMessage) {
       return null
     }
@@ -30,20 +31,16 @@ class App extends Component {
       <p style={{ backgroundColor: '#e99', padding: 10 }}>
         <b>{errorMessage}</b>
         {' '}
-        (<a href="#"
-            onClick={this.handleDismissClick}>
-          Dismiss
-        </a>)
+        (<a href="#" onClick={this.handleDismissClick}> Dismiss </a>)
       </p>
     )
   }
 
   render() {
-    const { children, inputValue } = this.props
+    const { children, inputValue } = this.props;
     return (
       <div>
-        <Explore value={inputValue}
-                 onChange={this.handleChange} />
+        <Explore value={inputValue} onChange={this.handleChange} />
         <hr />
         {this.renderErrorMessage()}
         {children}
@@ -60,7 +57,7 @@ App.propTypes = {
   inputValue: PropTypes.string.isRequired,
   // Injected by React Router
   children: PropTypes.node
-}
+};
 
 function mapStateToProps(state) {
   return {

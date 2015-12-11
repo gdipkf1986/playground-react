@@ -6,15 +6,15 @@ import User from '../components/User'
 import List from '../components/List'
 
 function loadData(props) {
-  const { fullName } = props
-  props.loadRepo(fullName, [ 'description' ])
+  const { fullName } = props;
+  props.loadRepo(fullName, [ 'description' ]);
   props.loadStargazers(fullName)
 }
 
 class RepoPage extends Component {
   constructor(props) {
     super(props)
-    this.renderUser = this.renderUser.bind(this)
+    this.renderUser = this.renderUser.bind(this);
     this.handleLoadMoreClick = this.handleLoadMoreClick.bind(this)
   }
 
@@ -40,12 +40,12 @@ class RepoPage extends Component {
   }
 
   render() {
-    const { repo, owner, name } = this.props
+    const { repo, owner, name } = this.props;
     if (!repo || !owner) {
       return <h1><i>Loading {name} details...</i></h1>
     }
 
-    const { stargazers, stargazersPagination } = this.props
+    const { stargazers, stargazersPagination } = this.props;
     return (
       <div>
         <Repo repo={repo}
@@ -73,7 +73,7 @@ RepoPage.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const { login, name } = state.router.params
+  const { login, name } = state.router.params;
   const {
     pagination: { stargazersByRepo },
     entities: { users, repos }

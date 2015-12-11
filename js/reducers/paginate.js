@@ -14,14 +14,14 @@ export default function paginate({ types, mapActionToKey }) {
     throw new Error('Expected mapActionToKey to be a function.')
   }
 
-  const [ requestType, successType, failureType ] = types
+  const [ requestType, successType, failureType ] = types;
 
   function updatePagination(state = {
     isFetching: false,
     nextPageUrl: undefined,
     pageCount: 0,
     ids: []
-  }, action) {
+  }, action = null) {
     switch (action.type) {
       case requestType:
         return merge({}, state, {
@@ -43,12 +43,12 @@ export default function paginate({ types, mapActionToKey }) {
     }
   }
 
-  return function updatePaginationByKey(state = {}, action) {
+  return function updatePaginationByKey(state = {}, action = null) {
     switch (action.type) {
       case requestType:
       case successType:
       case failureType:
-        const key = mapActionToKey(action)
+        const key = mapActionToKey(action);
         if (typeof key !== 'string') {
           throw new Error('Expected key to be a string.')
         }

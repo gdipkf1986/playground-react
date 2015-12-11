@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 
 export default class List extends Component {
   renderLoadMore() {
-    const { isFetching, onLoadMoreClick } = this.props
+    const { isFetching, onLoadMoreClick } = this.props;
     return (
       <button style={{ fontSize: '150%' }}
               onClick={onLoadMoreClick}
