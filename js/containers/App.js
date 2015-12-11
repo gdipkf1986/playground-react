@@ -18,7 +18,7 @@ class App extends BaseComponent {
   }
 
   handleChange(nextValue) {
-    this.props.pushState(null, `/${nextValue}`)
+    this.props.pushState123(null, `/${nextValue}`)
   }
 
   renderErrorMessage() {
@@ -37,6 +37,13 @@ class App extends BaseComponent {
   }
 
   render() {
+
+    // click(onchange)
+    //  -> dispatch (pushState is a dispatcher and return an action, it passed by connect 1st param)
+    //    -> reducers subscribe all actions, will process interested action and return an new state
+    //      -> state changed (react will refresh dom)
+    //        -> state map to prop (passed by connect 2nd param)
+
     const { children, inputValue } = this.props;
     return (
       <div>
@@ -53,7 +60,7 @@ App.propTypes = {
   // Injected by React Redux
   errorMessage: PropTypes.string,
   resetErrorMessage: PropTypes.func.isRequired,
-  pushState: PropTypes.func.isRequired,
+  pushState123: PropTypes.func.isRequired,
   inputValue: PropTypes.string.isRequired,
   // Injected by React Router
   children: PropTypes.node
@@ -68,5 +75,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   resetErrorMessage,
-  pushState
+  pushState123:pushState
 })(App)
