@@ -1,11 +1,10 @@
-import * as ActionTypes from '../actions'
+import * as ActionTypes from '~/actions'
 import merge from 'lodash/object/merge'
-import paginate from './github/paginate'
-import { routerStateReducer as router } from 'redux-router'
+import paginate from './paginate'
 import { combineReducers } from 'redux'
 
 // Updates an entity cache in response to any action with response.entities.
-function entities(state = { users: {}, repos: {} }, action = null) {
+export function entities(state = { users: {}, repos: {} }, action = null) {
   if (action.response && action.response.entities) {
     return merge({}, state, action.response.entities)
   }
@@ -14,7 +13,7 @@ function entities(state = { users: {}, repos: {} }, action = null) {
 }
 
 // Updates error message to notify about the failed fetches.
-function errorMessage(state = null, action = null) {
+export function errorMessage(state = null, action = null) {
   const { type, error } = action;
 
   if (type === ActionTypes.RESET_ERROR_MESSAGE) {
@@ -27,7 +26,7 @@ function errorMessage(state = null, action = null) {
 }
 
 // Updates the pagination data for different actions.
-const pagination = combineReducers({
+export const pagination = combineReducers({
   starredByUser: paginate({
     mapActionToKey: action => action.login,
     types: [
@@ -44,16 +43,4 @@ const pagination = combineReducers({
       ActionTypes.STARGAZERS_FAILURE
     ]
   })
-})
-
-import {fetchList}  from './cms/fetchList.js';
-
-const rootReducer = combineReducers({
-  entities,
-  pagination,
-  errorMessage,
-  router,
-  fetchList
 });
-
-export default rootReducer

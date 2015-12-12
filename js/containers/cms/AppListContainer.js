@@ -1,26 +1,30 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { pushState } from 'redux-router'
-import {Link} from 'react-router';
 
 import BaseComponent from '~/mixins/BaseComponent';
+import AppList from '~/components/cms/AppList';
 
-class Cms extends BaseComponent {
+class AppListContainer extends BaseComponent {
   constructor (props) {
     super(props);
   }
 
+  getApps () {
+    return [1, 2, 3, 4].map(i=> {
+      return {title: Math.random(), url: Math.random()}
+    })
+  }
+
   render () {
-    const {
-      children
-      } = this.props;
+
+    const apps = this.getApps();
+    const { children } = this.props;
 
     return (
       <div>
-        hello1 world -
-        <Link to='/cms/abc'>abc</Link> -
-        <Link to='/cms/app'>app</Link>
-        <hr/>
+        <AppList apps={apps}></AppList>
+
         {/* children injected by router*/}
         {children}
       </div>
@@ -28,7 +32,7 @@ class Cms extends BaseComponent {
   }
 }
 
-Cms.propTypes = {
+AppListContainer.propTypes = {
   // loadingLabel: PropTypes.string.isRequired,
   // pageCount: PropTypes.number,
   // renderItem: PropTypes.func.isRequired,
@@ -36,18 +40,17 @@ Cms.propTypes = {
   // isFetching: PropTypes.bool.isRequired,
   // onLoadMoreClick: PropTypes.func.isRequired,
   // nextPageUrl: PropTypes.string
-  children: PropTypes.node
 };
 
-Cms.defaultProps = {
+AppListContainer.defaultProps = {
   // isFetching: true,
   // loadingLabel: 'Loading...'
 };
 
 function mapStateToProps (state) {
-  return {...state}
+  return {}
 }
 
 export default connect(mapStateToProps, {
   pushState
-})(Cms);
+})(AppListContainer);

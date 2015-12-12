@@ -1,34 +1,34 @@
+/**
+ * Created by jovi on 12/12/15.
+ */
 import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { pushState } from 'redux-router'
-import {Link} from 'react-router';
+
+import styles from '~/../css/app.scss';
+import CssModule from 'react-css-modules';
 
 import BaseComponent from '~/mixins/BaseComponent';
 
-class Cms extends BaseComponent {
+class AppList extends BaseComponent {
   constructor (props) {
     super(props);
   }
 
   render () {
     const {
-      children
+        apps
       } = this.props;
 
     return (
-      <div>
-        hello1 world -
-        <Link to='/cms/abc'>abc</Link> -
-        <Link to='/cms/app'>app</Link>
-        <hr/>
-        {/* children injected by router*/}
-        {children}
-      </div>
+      <ul>
+        {apps.map(a=>{
+          return <li key={a.url}>{a.title}</li>
+        })}
+      </ul>
     )
   }
 }
 
-Cms.propTypes = {
+AppList.propTypes = {
   // loadingLabel: PropTypes.string.isRequired,
   // pageCount: PropTypes.number,
   // renderItem: PropTypes.func.isRequired,
@@ -36,18 +36,12 @@ Cms.propTypes = {
   // isFetching: PropTypes.bool.isRequired,
   // onLoadMoreClick: PropTypes.func.isRequired,
   // nextPageUrl: PropTypes.string
-  children: PropTypes.node
 };
 
-Cms.defaultProps = {
+AppList.defaultProps = {
   // isFetching: true,
   // loadingLabel: 'Loading...'
 };
 
-function mapStateToProps (state) {
-  return {...state}
-}
 
-export default connect(mapStateToProps, {
-  pushState
-})(Cms);
+export default CssModule(AppList, styles);
