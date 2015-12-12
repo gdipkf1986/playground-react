@@ -5,7 +5,7 @@ import { routerStateReducer as router } from 'redux-router'
 import { combineReducers } from 'redux'
 
 // Updates an entity cache in response to any action with response.entities.
-function entities(state = { users: {}, repos: {} }, action = null) {
+function entities (state = {users: {}, repos: {}}, action = null) {
   if (action.response && action.response.entities) {
     return merge({}, state, action.response.entities)
   }
@@ -14,7 +14,7 @@ function entities(state = { users: {}, repos: {} }, action = null) {
 }
 
 // Updates error message to notify about the failed fetches.
-function errorMessage(state = null, action = null) {
+function errorMessage (state = null, action = null) {
   const { type, error } = action;
 
   if (type === ActionTypes.RESET_ERROR_MESSAGE) {
@@ -46,14 +46,13 @@ const pagination = combineReducers({
   })
 })
 
-import {fetchList}  from './cms/fetchList.js';
+import * as cmsApi  from './cms/fetchList.js';
 
-const rootReducer = combineReducers({
+const rootReducer = combineReducers(Object.assign({}, {
   entities,
   pagination,
   errorMessage,
-  router,
-  fetchList
-});
+  router
+}, cmsApi));
 
 export default rootReducer

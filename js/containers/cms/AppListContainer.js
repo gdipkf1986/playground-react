@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { pushState } from 'redux-router'
+import { pushState, dispatch } from 'redux-router'
 
 import BaseComponent from '~/mixins/BaseComponent';
 import AppList from '~/components/cms/AppList';
@@ -8,22 +8,29 @@ import AppList from '~/components/cms/AppList';
 class AppListContainer extends BaseComponent {
   constructor (props) {
     super(props);
+    this.state = {};
   }
 
   getApps () {
-    return [1, 2, 3, 4].map(i=> {
-      return {title: Math.random(), url: Math.random()}
-    })
+    const {dispatch} = this.props;
+    dispatch({type: 'CMS_API_FETCHING'});
+  }
+
+  componentDidMount () {
+    const {dispatch} = this.props;
+    dispatch({type: 'CMS_API_FETCHING'});
   }
 
   render () {
 
-    const apps = this.getApps();
-    const { children } = this.props;
+
+    //const apps = this.getApps();
+    const { children, dispatch } = this.props;
 
     return (
       <div>
-        <AppList apps={apps}></AppList>
+        <input onClick={this.getApps} value="load" type="button"/>
+        <AppList apps={this.props.cmsApps ||[]}></AppList>
 
         {/* children injected by router*/}
         {children}
@@ -48,9 +55,7 @@ AppListContainer.defaultProps = {
 };
 
 function mapStateToProps (state) {
-  return {}
+  return {...state}
 }
 
-export default connect(mapStateToProps, {
-  pushState
-})(AppListContainer);
+export default connect(mapStateToProps)(AppListContainer);

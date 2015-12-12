@@ -17,7 +17,6 @@ export default (
       <Route path=":login" component={UserPage}/>
     </Route>
     <Route path="cms" component={Cms}>
-      <IndexRoute component={AppListContainer}></IndexRoute>
       <Route path="app" component={AppListContainer}/>
       <Redirect from="*" to="/cms/app"></Redirect>
     </Route>
