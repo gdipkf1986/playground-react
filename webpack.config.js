@@ -7,12 +7,19 @@ var devFlagPlugin = new webpack.DefinePlugin({
   __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
 });
 
+var vendors = Object.keys(require('./package.json').dependencies);
+
+console.log(vendors);
+
 module.exports = {
-  entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    './js/index'
-  ],
+  entry: {
+    app: [
+      'webpack-dev-server/client?http://localhost:3000'
+      , 'webpack/hot/only-dev-server'
+      , './js/index'
+    ],
+    vendors: vendors
+  },
   devtool: 'source-map',
   output: {
     path: __dirname + '/static/',
@@ -24,9 +31,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     devFlagPlugin,
-    new ExtractTextPlugin('app.output.css', {
-      allChunks: true
-    })
+    new ExtractTextPlugin('[name].css'),
+    new webpack.optimize.CommonsChunkPlugin(/* chunkname => */'vendors', /* filename => */'vendors.js')
   ],
   module: {
     loaders: [

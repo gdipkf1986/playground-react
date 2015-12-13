@@ -3,34 +3,25 @@ import { connect } from 'react-redux'
 import { pushState, dispatch } from 'redux-router'
 
 import BaseComponent from '~/mixins/BaseComponent';
-import AppList from '~/components/cms/AppList';
+import AppDetail from '~/components/cms/AppDetail';
 
-class AppListContainer extends BaseComponent {
+class AppDetailContainer extends BaseComponent {
   constructor (props) {
     super(props);
-    this.state = {};
-  }
-
-  getApps () {
-    const {dispatch} = this.props;
-    dispatch({type: 'CMS_API_FETCHING'});
   }
 
   componentDidMount () {
-    const {dispatch} = this.props;
-    dispatch({type: 'CMS_API_FETCHING'});
+    // init async data at here, fetch data directly or dipatch an action
+    // const { dispatch } = this.props
   }
 
   render () {
-
-
-    //const apps = this.getApps();
-    const { children, dispatch } = this.props;
+    const {
+      children, dispatch
+      } = this.props;
 
     return (
       <div>
-        <AppList apps={this.props.cmsApps ||[]}></AppList>
-
         {/* children injected by router*/}
         {children}
       </div>
@@ -38,7 +29,7 @@ class AppListContainer extends BaseComponent {
   }
 }
 
-AppListContainer.propTypes = {
+AppDetailContainer.propTypes = {
   // loadingLabel: PropTypes.string.isRequired,
   // pageCount: PropTypes.number,
   // renderItem: PropTypes.func.isRequired,
@@ -46,9 +37,10 @@ AppListContainer.propTypes = {
   // isFetching: PropTypes.bool.isRequired,
   // onLoadMoreClick: PropTypes.func.isRequired,
   // nextPageUrl: PropTypes.string
+  children: PropTypes.node
 };
 
-AppListContainer.defaultProps = {
+AppDetailContainer.defaultProps = {
   // isFetching: true,
   // loadingLabel: 'Loading...'
 };
@@ -57,4 +49,6 @@ function mapStateToProps (state) {
   return {...state}
 }
 
-export default connect(mapStateToProps)(AppListContainer);
+export default connect(mapStateToProps, {
+  pushState, dispatch
+})(AppDetailContainer);

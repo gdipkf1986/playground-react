@@ -1,32 +1,33 @@
 /**
- * Created by jovi on 12/12/15.
+ * Created by jovi on 12/13/15.
  */
+
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { pushState, dispatch } from 'redux-router'
 
 import styles from '~/../css/app.scss';
 import CssModule from 'react-css-modules';
 
 import BaseComponent from '~/mixins/BaseComponent';
 
-import {Grid,Row,Col} from 'react-bootstrap';
-
-class AppList extends BaseComponent {
+class AppDetail extends BaseComponent {
   constructor (props) {
     super(props);
   }
 
   render () {
     const {
-      app
+      pushState, dispatch, children
       } = this.props;
 
     return (
-      <div className='container'>hello world</div>
+      <div className="container"></div>
     )
   }
 }
 
-AppList.propTypes = {
+AppDetail.propTypes = {
   // loadingLabel: PropTypes.string.isRequired,
   // pageCount: PropTypes.number,
   // renderItem: PropTypes.func.isRequired,
@@ -36,10 +37,16 @@ AppList.propTypes = {
   // nextPageUrl: PropTypes.string
 };
 
-AppList.defaultProps = {
+AppDetail.defaultProps = {
   // isFetching: true,
   // loadingLabel: 'Loading...'
 };
 
+function mapStateToProps (state) {
+  return {...state}
+}
 
-export default CssModule(AppList, styles);
+
+export default connect(mapStateToProps, {
+  pushState, dispatch
+})(CssModule(AppDetail, styles));

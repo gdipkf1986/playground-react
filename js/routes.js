@@ -10,15 +10,20 @@ import RepoPage from '~/containers/github/RepoPage';
 import Cms from '~/containers/cms/Cms';
 import AppListContainer from '~/containers/cms/AppListContainer';
 
+
+
 export default (
-  <Route path="/" component={System}>
+  <Route path="/" component={System} history={history}>
     <Route path="github" component={Github}>
       <Route path=":login/:name" coabcmponent={RepoPage}/>
       <Route path=":login" component={UserPage}/>
     </Route>
-    <Route path="cms" component={Cms}>
+    <Route path="cms">
+      <IndexRoute component={AppListContainer}></IndexRoute>
       <Route path="app" component={AppListContainer}/>
+      <Route path="app/:id" component={}/>
       <Redirect from="*" to="/cms/app"></Redirect>
+      <Redirect from="" to="/cms/app"></Redirect>
     </Route>
   </Route>
 )

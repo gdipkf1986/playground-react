@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 
 import BaseComponent from '~/mixins/BaseComponent';
-import Nav from '~/components/Nav';
+import GmcNav from '~/components/GmcNav';
 
 class System extends BaseComponent {
   constructor (props) {
@@ -16,15 +16,15 @@ class System extends BaseComponent {
     //      -> state changed (react will refresh dom)
     //        -> state map to prop (passed by connect 2nd param)
 
-    let links = [{
-      text: 'Git Hub', url: '/github/'
-    }, {
-      text: 'CMS', url: '/cms'
-    }];
+    let links = [
+      {text: 'Git Hub', url: '/github/'},
+      {text: 'CMS', url: '/cms'}
+    ];
     return (
       <div>
-        <Nav links={links}></Nav>
-        <div>{this.props.children}</div>
+        <GmcNav links={links}></GmcNav>
+
+        <div className="container">{this.props.children}</div>
       </div>
     )
   }

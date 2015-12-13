@@ -17,10 +17,7 @@ class Cms extends BaseComponent {
 
     return (
       <div>
-        hello1 world -
-        <Link to='/cms/abc'>abc</Link> -
-        <Link to='/cms/app'>app</Link>
-        <hr/>
+        helo
         {/* children injected by router*/}
         {children}
       </div>
