@@ -2,7 +2,7 @@ import { Schema, arrayOf, normalize } from 'normalizr'
 import { camelizeKeys } from 'humps'
 import 'isomorphic-fetch'
 
-// Extracts the next page URL from Github API response.
+// Extracts the next page URL from GitHub API response.
 function getNextPageUrl(response) {
   const link = response.headers.get('link')
   if (!link) {
@@ -62,7 +62,7 @@ repoSchema.define({
   owner: userSchema
 })
 
-// Schemas for Github API responses.
+// Schemas for GitHub API responses.
 export const Schemas = {
   USER: userSchema,
   USER_ARRAY: arrayOf(userSchema),

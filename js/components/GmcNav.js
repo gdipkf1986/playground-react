@@ -22,7 +22,7 @@ class GmcNav extends BaseComponent {
 
   render () {
     const {links, router} = this.props;
-    const path = router.routes.length >= 1
+    const path = (router.routes.length >= 2 && router.routes[1].path)
       ? router.routes[1].path.toUpperCase()
       : 'GMC';
     return (

@@ -22,6 +22,8 @@ class AppDetailContainer extends BaseComponent {
 
     return (
       <div>
+
+        this is app detail container
         {/* children injected by router*/}
         {children}
       </div>

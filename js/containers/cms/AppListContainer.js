@@ -5,20 +5,28 @@ import { pushState, dispatch } from 'redux-router'
 import BaseComponent from '~/mixins/BaseComponent';
 import AppList from '~/components/cms/AppList';
 
+import {appsFetch} from '~/actions/cms';
+
 class AppListContainer extends BaseComponent {
   constructor (props) {
     super(props);
-    this.state = {};
-  }
-
-  getApps () {
-    const {dispatch} = this.props;
-    dispatch({type: 'CMS_API_FETCHING'});
+    this.state = {apps: []};
   }
 
   componentDidMount () {
+
+    // actionType
+    //  -> actionCreator
+    //    -> dispatchAction
+    //      -> api middleware fetch interested action
+    //        -> api middleware dispatch fetching action
+    //          -> api middleware fetch and call next (with fetch success action) on success handler
+    //    -> middleware proceed
+    //    -> middleware return proceed state
+    //    -> components refresh dom by state
+
     const {dispatch} = this.props;
-    dispatch({type: 'CMS_API_FETCHING'});
+    dispatch(appsFetch());
   }
 
   render () {
@@ -29,10 +37,7 @@ class AppListContainer extends BaseComponent {
 
     return (
       <div>
-        <AppList apps={this.props.cmsApps ||[]}></AppList>
-
-        {/* children injected by router*/}
-        {children}
+        <AppList apps={this.props.apps ||[]}></AppList>
       </div>
     )
   }

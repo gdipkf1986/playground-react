@@ -1,7 +1,6 @@
 /**
  * Created by jovi on 12/13/15.
  */
-
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { pushState, dispatch } from 'redux-router'
@@ -11,7 +10,7 @@ import CssModule from 'react-css-modules';
 
 import BaseComponent from '~/mixins/BaseComponent';
 
-class AppDetail extends BaseComponent {
+class NotFound extends BaseComponent {
   constructor (props) {
     super(props);
   }
@@ -22,12 +21,12 @@ class AppDetail extends BaseComponent {
       } = this.props;
 
     return (
-      <div className="container">this is app detail component</div>
+      <div>You page is not found, please check url</div>
     )
   }
 }
 
-AppDetail.propTypes = {
+NotFound.propTypes = {
   // loadingLabel: PropTypes.string.isRequired,
   // pageCount: PropTypes.number,
   // renderItem: PropTypes.func.isRequired,
@@ -37,7 +36,7 @@ AppDetail.propTypes = {
   // nextPageUrl: PropTypes.string
 };
 
-AppDetail.defaultProps = {
+NotFound.defaultProps = {
   // isFetching: true,
   // loadingLabel: 'Loading...'
 };
@@ -49,4 +48,4 @@ function mapStateToProps (state) {
 
 export default connect(mapStateToProps, {
   pushState, dispatch
-})(CssModule(AppDetail, styles));
+})(CssModule(NotFound, styles));

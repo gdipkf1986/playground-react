@@ -11,7 +11,7 @@ var vendors = Object.keys(require('./package.json').dependencies);
 
 console.log(vendors);
 
-module.exports = {
+const config = {
   entry: {
     app: [
       'webpack-dev-server/client?http://localhost:3000'
@@ -35,16 +35,21 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin(/* chunkname => */'vendors', /* filename => */'vendors.js')
   ],
   module: {
+    noParse: vendors,
     loaders: [
       {test: /\.js$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/},
       {test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader?module!cssnext-loader')},
       {test: /\.scss$/, loader: ExtractTextPlugin.extract('css-loader?module!sass?sourceMap')}
     ]
+
   },
   resolve: {
+    alias: {},
     extensions: ['', '.js', '.json']
   },
   sassLoader: {
     includePaths: [path.resolve(__dirname, "./css")]
   }
 };
+
+module.exports = config;

@@ -13,7 +13,7 @@ import CssModule from 'react-css-modules';
 
 import BaseComponent from '~/mixins/BaseComponent';
 
-class Github extends BaseComponent {
+class GitHub extends BaseComponent {
   constructor(props) {
     super(props);
   }
@@ -49,13 +49,7 @@ class Github extends BaseComponent {
     //    -> reducers subscribe all actions, will process interested action and return an new state
     //      -> state changed (react will refresh dom)
     //        -> state map to prop (passed by connect 2nd param)
-    //
-    //        <!--
-    //    <Explore value={inputValue} onChange={this.handleChange} />
-    //    <hr />
-    //    {this.renderErrorMessage()}
-    //    {children}
-    //      -->
+
     const { children, inputValue } = this.props;
     return (
       <div>
@@ -66,7 +60,7 @@ class Github extends BaseComponent {
     )
   }
 }
-Github.propTypes = {
+GitHub.propTypes = {
   // Injected by React Redux
   errorMessage: PropTypes.string,
   resetErrorMessage: PropTypes.func.isRequired,
@@ -86,6 +80,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   resetErrorMessage,
   pushState
-})(Github)
+})(GitHub)
 
 

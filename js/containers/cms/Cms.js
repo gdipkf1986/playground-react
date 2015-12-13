@@ -10,6 +10,10 @@ class Cms extends BaseComponent {
     super(props);
   }
 
+  componentDidMount () {
+    this.props.pushState(null, '/cms/apps');
+  }
+
   render () {
     const {
       children
@@ -17,8 +21,6 @@ class Cms extends BaseComponent {
 
     return (
       <div>
-        helo
-        {/* children injected by router*/}
         {children}
       </div>
     )

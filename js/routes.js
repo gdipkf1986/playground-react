@@ -3,27 +3,37 @@ import { Route, IndexRoute, Redirect } from 'react-router'
 
 import System from '~/containers/System';
 
-import Github from '~/containers/github/Github';
+import GitHub from '~/containers/github/GitHub';
 import UserPage from '~/containers/github/UserPage';
 import RepoPage from '~/containers/github/RepoPage';
 
 import Cms from '~/containers/cms/Cms';
 import AppListContainer from '~/containers/cms/AppListContainer';
+import AppDetailContainer from '~/containers/cms/AppDetailContainer';
 
-
+import NotFound from '~/components/NotFound';
 
 export default (
-  <Route path="/" component={System} history={history}>
-    <Route path="github" component={Github}>
-      <Route path=":login/:name" coabcmponent={RepoPage}/>
+  <Route path="/" component={System}>
+
+    <Redirect from="/" to="/cms/app"></Redirect>
+
+    <Route path="github" component={GitHub}>
+      <Route path=":login/:name" component={RepoPage}/>
       <Route path=":login" component={UserPage}/>
     </Route>
-    <Route path="cms">
-      <IndexRoute component={AppListContainer}></IndexRoute>
-      <Route path="app" component={AppListContainer}/>
-      <Route path="app/:id" component={}/>
-      <Redirect from="*" to="/cms/app"></Redirect>
-      <Redirect from="" to="/cms/app"></Redirect>
+
+    <Route path="cms" component={Cms}>
+      <Route path="apps" component={AppListContainer}></Route>
+      <Route path="app">
+        <IndexRoute component={NotFound}></IndexRoute>
+        <Route path=":id" component={AppDetailContainer}></Route>
+      </Route>
     </Route>
+
+    <Route path="notfound" component={NotFound}/>
+
+    <Redirect from="*" to="/notfound"></Redirect>
+
   </Route>
 )
