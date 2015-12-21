@@ -16,8 +16,6 @@ import NotFound from '~/components/NotFound';
 export default (
   <Route path="/" component={System}>
 
-    <Redirect from="/" to="/cms/app"></Redirect>
-
     <Route path="github" component={GitHub}>
       <Route path=":login/:name" component={RepoPage}/>
       <Route path=":login" component={UserPage}/>
@@ -36,4 +34,5 @@ export default (
     <Redirect from="*" to="/notfound"></Redirect>
 
   </Route>
+
 )

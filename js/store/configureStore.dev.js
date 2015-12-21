@@ -8,12 +8,12 @@ import createLogger from 'redux-logger'
 import rootReducer from '../reducers'
 
 
-import api from '../middleware/api'
+import gitHubApi from '../middleware/gitHubApi'
 import cmsApi from '~/middleware/cmsApi';
 
 
 const finalCreateStore = compose(
-  applyMiddleware(thunk, api, cmsApi),
+  applyMiddleware(thunk, gitHubApi, cmsApi),
   reduxReactRouter({ routes, createHistory }),
   applyMiddleware(createLogger()),
   DevTools.instrument()

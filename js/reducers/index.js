@@ -4,55 +4,10 @@ import paginate from './github/paginate'
 import { routerStateReducer as router } from 'redux-router'
 import { combineReducers } from 'redux'
 
-// Updates an entity cache in response to any action with response.entities.
-function entities (state = {users: {}, repos: {}}, action = null) {
-  if (action.response && action.response.entities) {
-    return merge({}, state, action.response.entities)
-  }
-
-  return state
-}
-
-// Updates error message to notify about the failed fetches.
-function errorMessage (state = null, action = null) {
-  const { type, error } = action;
-
-  if (type === ActionTypes.RESET_ERROR_MESSAGE) {
-    return null
-  } else if (error) {
-    return action.error
-  }
-
-  return state
-}
-
-// Updates the pagination data for different actions.
-const pagination = combineReducers({
-  starredByUser: paginate({
-    mapActionToKey: action => action.login,
-    types: [
-      ActionTypes.STARRED_REQUEST,
-      ActionTypes.STARRED_SUCCESS,
-      ActionTypes.STARRED_FAILURE
-    ]
-  }),
-  stargazersByRepo: paginate({
-    mapActionToKey: action => action.fullName,
-    types: [
-      ActionTypes.STARGAZERS_REQUEST,
-      ActionTypes.STARGAZERS_SUCCESS,
-      ActionTypes.STARGAZERS_FAILURE
-    ]
-  })
-})
 
 import * as cmsApi  from './cms/fetchList.js';
+import * as gitHubApi from './github/';
 
-const rootReducer = combineReducers(Object.assign({}, {
-  entities,
-  pagination,
-  errorMessage,
-  router
-}, cmsApi));
+const rootReducer = combineReducers({ ...gitHubApi, router,...cmsApi});
 
 export default rootReducer
