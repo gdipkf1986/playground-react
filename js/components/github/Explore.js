@@ -1,3 +1,4 @@
+// jscs:disable
 import React, { Component, PropTypes } from 'react'
 
 const GITHUB_REPO = 'https://github.com/rackt/redux';

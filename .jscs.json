@@ -10,13 +10,6 @@
   ],
   "requireOperatorBeforeLineBreak": true,
   "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
-  "maximumLineLength": {
-    "value": 256,
-    "allExcept": [
-      "comments",
-      "regex"
-    ]
-  },
   "validateIndentation": 2,
   "validateQuoteMarks": "'",
   "disallowMultipleLineStrings": true,
@@ -88,7 +81,7 @@
   "disallowSpacesInsideObjectBrackets": "all",
   "disallowSpacesInsideArrayBrackets": "all",
   "disallowSpacesInsideParentheses": true,
-  "disallowMultipleLineBreaks": true,
+  "disallowMultipleLineBreaks": false,
   "disallowNewlineBeforeBlockStatements": true,
   "disallowKeywords": [
     "with",
@@ -122,10 +115,9 @@
   },
   "maxErrors": 1024,
   "excludeFiles": [
-    "app/locales/**",
-    "app/utils/bank-logos.js",
-    "app/utils/banks.js",
-    "app/utils/address.js",
-    "app/utils/banksTree.js"
-  ]
+    "js/actions/github.js",
+    "components/github/**",
+    "babelTransformers/**"
+  ],
+  "esnext": true
 }

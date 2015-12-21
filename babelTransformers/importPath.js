@@ -5,13 +5,13 @@ var startsWith = require('lodash/string/startsWith');
 var CWD_PREFIX = '~';
 
 
-module.exports = function (babel) {
+module.exports = function(babel) {
   // get the working directory
 
   var cwd = process.cwd();
 
-  return new babel.Transformer("babel-plugin-import-path", {
-    ImportDeclaration: function (node, parent) {
+  return new babel.Transformer('babel-plugin-import-path', {
+    ImportDeclaration: function(node, parent) {
 
       // probably always true, but let's be safe
       if (!babel.types.isLiteral(node.source)) {

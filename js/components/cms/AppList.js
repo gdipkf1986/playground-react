@@ -1,7 +1,7 @@
 /**
  * Created by jovi on 12/12/15.
  */
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
 
 import styles from '~/../css/app.scss';
 import CssModule from 'react-css-modules';
@@ -12,16 +12,16 @@ import BaseComponent from '~/mixins/BaseComponent';
 import sortObjectArray from '~/utils/sortObjectArray';
 
 class AppList extends BaseComponent {
-  constructor (props) {
+  constructor(props) {
     super(props);
   }
 
-  render () {
-    const { apps } = this.props;
+  render() {
+    const {apps} = this.props;
     apps.sort(sortObjectArray({name: 'id', reverse: true}));
 
     return (
-      <table className="table table-hover">
+      <table className='table table-hover'>
         <thead>
         <tr>
           <th>Id</th>
@@ -36,17 +36,17 @@ class AppList extends BaseComponent {
         {apps.map(a=> {
           return (
             <tr key={a.id}>
-              <td><Link to={"/cms/app/"+a.id}>{a.id}</Link></td>
-              <td><Link to={"/cms/app/"+a.id}>{a.app_name}</Link></td>
+              <td><Link to={'/cms/app/' + a.id}>{a.id}</Link></td>
+              <td><Link to={'/cms/app/' + a.id}>{a.app_name}</Link></td>
               <td>{a.garena_id}</td>
               <td>{
                 a.users && a.users.map(u=> {
                   return (u.name);
                 })
               }</td>
-              <td><input type='checkbox' checked={a.is_active}/></td>
+              <td><input type='checkbox' checked={a.is_active} readOnly /></td>
               <td>
-                <button className="btn btn-primary">Operation</button>
+                <button className='btn btn-primary'>Operation</button>
               </td>
             </tr>
           );
@@ -58,7 +58,8 @@ class AppList extends BaseComponent {
 }
 
 AppList.propTypes = {
-  // loadingLabel: PropTypes.string.isRequired,
+
+  // LoadingLabel: PropTypes.string.isRequired,
   // pageCount: PropTypes.number,
   // renderItem: PropTypes.func.isRequired,
   // items: PropTypes.array.isRequired,
@@ -68,9 +69,9 @@ AppList.propTypes = {
 };
 
 AppList.defaultProps = {
-  // isFetching: true,
+
+  // IsFetching: true,
   // loadingLabel: 'Loading...'
 };
-
 
 export default CssModule(AppList, styles);

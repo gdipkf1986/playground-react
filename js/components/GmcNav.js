@@ -1,7 +1,7 @@
 /**
  * Created by jovi on 12/13/15.
  */
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
 
 
 import BaseComponent from '~/mixins/BaseComponent';
@@ -9,39 +9,39 @@ import BaseComponent from '~/mixins/BaseComponent';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 
 class GmcNav extends BaseComponent {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {};
   }
 
-  goLink (link) {
+  goLink(link) {
     const {pushState} = this.props;
     this.setState({currentModule: link.text});
-    pushState(null, link.url)
+    pushState(null, link.url);
   }
 
-  render () {
+  render() {
     const {links, router} = this.props;
-    const path = (router.routes.length >= 2 && router.routes[1].path)
-      ? router.routes[1].path.toUpperCase()
+    const path = (router.routes.length >= 2 && router.routes[1].path) ?
+      router.routes[1].path.toUpperCase()
       : 'GMC';
     return (
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="/">Garena Mobile Center</a>
+            <a href='/'>Garena Mobile Center</a>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
           <NavDropdown eventKey={3} title={this.state.currentModule || path} id='nav_drop_down'>
             {links.map((l, i)=> {
-              return <MenuItem key={l.url} href='#' onClick={this.goLink.bind(this,l)} eventKey={`3.${i}`}>{l.text}</MenuItem>
+              return <MenuItem key={l.url} href='#' onClick={this.goLink.bind(this,l)} eventKey={`3.${i}`}>{l.text}</MenuItem>;
             })}
-            { /*<MenuItem divider/>*/}
+            {}/*<MenuItem divider/>*/}/*<MenuItem divider/>*/}
           </NavDropdown>
         </Nav>
       </Navbar>
-    )
+    );
   }
 }
 
@@ -61,11 +61,11 @@ GmcNav.defaultProps = {
   // loadingLabel: 'Loading...'
 };
 
-import { connect } from 'react-redux'
-import { pushState, dispatch } from 'redux-router'
+import { connect } from 'react-redux';
+import { pushState, dispatch } from 'redux-router';
 
-function mapStateToProps (state) {
-  return {...state}
+function mapStateToProps(state) {
+  return {...state};
 }
 
 export default connect(mapStateToProps, {pushState, dispatch})(GmcNav);
