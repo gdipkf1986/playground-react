@@ -37,7 +37,6 @@ class GmcNav extends BaseComponent {
             {links.map((l, i)=> {
               return <MenuItem key={l.url} href='#' onClick={this.goLink.bind(this,l)} eventKey={`3.${i}`}>{l.text}</MenuItem>;
             })}
-            {}/*<MenuItem divider/>*/}/*<MenuItem divider/>*/}
           </NavDropdown>
         </Nav>
       </Navbar>
