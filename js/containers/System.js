@@ -1,14 +1,21 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
 
 import BaseComponent from '~/mixins/BaseComponent';
 import GmcNav from '~/components/GmcNav';
 
+
+
 class System extends BaseComponent {
-  constructor (props) {
+  constructor(props) {
     super(props);
   }
 
-  render () {
+  componentWillMount() {
+    const {dispatch} = this.props;
+    //dispatch(auth())
+  }
+
+  render() {
 
     // click(onchange)
     //  -> dispatch (pushState is a dispatcher and return an action, it passed by connect 1st param)
@@ -24,9 +31,9 @@ class System extends BaseComponent {
       <div>
         <GmcNav links={links}></GmcNav>
 
-        <div className="container">{this.props.children}</div>
+        <div className='container'>{this.props.children}</div>
       </div>
-    )
+    );
   }
 }
 

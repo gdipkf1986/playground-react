@@ -1,9 +1,9 @@
 /**
  * Created by jovi on 12/13/15.
  */
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { pushState, dispatch } from 'redux-router'
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { pushState, dispatch } from 'redux-router';
 
 import styles from '~/../css/app.scss';
 import CssModule from 'react-css-modules';
@@ -11,18 +11,18 @@ import CssModule from 'react-css-modules';
 import BaseComponent from '~/mixins/BaseComponent';
 
 class NotFound extends BaseComponent {
-  constructor (props) {
+  constructor(props) {
     super(props);
   }
 
-  render () {
+  render() {
     const {
       pushState, dispatch, children
       } = this.props;
 
     return (
       <div>You page is not found, please check url</div>
-    )
+    );
   }
 }
 
@@ -41,8 +41,8 @@ NotFound.defaultProps = {
   // loadingLabel: 'Loading...'
 };
 
-function mapStateToProps (state) {
-  return {...state}
+function mapStateToProps(state) {
+  return {...state};
 }
 
 

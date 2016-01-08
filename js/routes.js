@@ -1,5 +1,5 @@
-import React from 'react'
-import { Route, IndexRoute, Redirect } from 'react-router'
+import React from 'react';
+import { Route, IndexRoute, Redirect } from 'react-router';
 
 import System from '~/containers/System';
 
@@ -14,25 +14,27 @@ import AppDetailContainer from '~/containers/cms/AppDetailContainer';
 import NotFound from '~/components/NotFound';
 
 export default (
-  <Route path="/" component={System}>
+  <Route path='/' component={System}>
 
-    <Route path="github" component={GitHub}>
-      <Route path=":login/:name" component={RepoPage}/>
-      <Route path=":login" component={UserPage}/>
+    <Redirect from='/cms' to='/cms/apps'/>
+
+    <Route path='github' component={GitHub}>
+      <Route path=':login/:name' component={RepoPage}/>
+      <Route path=':login' component={UserPage}/>
     </Route>
 
-    <Route path="cms" component={Cms}>
-      <Route path="apps" component={AppListContainer}></Route>
-      <Route path="app">
+    <Route path='cms' component={Cms}>
+      <Route path='apps' component={AppListContainer}></Route>
+      <Route path='app'>
         <IndexRoute component={NotFound}></IndexRoute>
-        <Route path=":id" component={AppDetailContainer}></Route>
+        <Route path=':id' component={AppDetailContainer}></Route>
       </Route>
     </Route>
 
-    <Route path="notfound" component={NotFound}/>
+    <Route path='notfound' component={NotFound}/>
 
-    <Redirect from="*" to="/notfound"></Redirect>
+    <Redirect from='*' to='/notfound'></Redirect>
 
   </Route>
 
-)
+);

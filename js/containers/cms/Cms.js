@@ -1,20 +1,20 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { pushState } from 'redux-router'
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { pushState } from 'redux-router';
 import {Link} from 'react-router';
 
 import BaseComponent from '~/mixins/BaseComponent';
 
 class Cms extends BaseComponent {
-  constructor (props) {
+  constructor(props) {
     super(props);
   }
 
-  componentDidMount () {
-    this.props.pushState(null, '/cms/apps');
+  componentDidMount() {
+    //this.props.pushState(null, '/cms/apps');
   }
 
-  render () {
+  render() {
     const {
       children
       } = this.props;
@@ -23,7 +23,7 @@ class Cms extends BaseComponent {
       <div>
         {children}
       </div>
-    )
+    );
   }
 }
 
@@ -43,8 +43,8 @@ Cms.defaultProps = {
   // loadingLabel: 'Loading...'
 };
 
-function mapStateToProps (state) {
-  return {...state}
+function mapStateToProps(state) {
+  return {...state};
 }
 
 export default connect(mapStateToProps, {

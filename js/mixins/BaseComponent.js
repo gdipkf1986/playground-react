@@ -21,6 +21,10 @@ export default class BaseComponent extends Component {
     }
   }
 
+  //shouldComponentUpdate() {
+  //  return React.addons.PureRenderMixin.shouldComponentUpdate.apply(this, arguments);
+  //}
+
   //shouldComponentUpdate(nextProps, nextState) {
   //  return !(this.props === nextProps || is(this.props, nextProps)) || !(this.state === nextState || is(this.state, nextState));
   //}
