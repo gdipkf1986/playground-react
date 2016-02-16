@@ -6,8 +6,8 @@ let defaultCmp = function(a, b) {
       return 0;
     }
     return a < b ? -1 : 1;
-  },
-  getCmpFunc = function(primer, reverse) {
+  };
+let getCmpFunc = function(primer, reverse) {
     let dfc = defaultCmp, // closer in scope
       cmp = defaultCmp;
     if (primer) {
